@@ -1,0 +1,115 @@
+/* Variables de color para mantener consistencia */
+:root {
+    --bg-main: #BEE3E3;
+    --pastel-pink: #FFC4C4;
+    --pastel-pink-hover: #FFB0B0;
+    --text-dark: #5C4B51;
+    --border-color: #BEE3E3;
+}
+
+body { 
+    background-image: url('../assets/imagenes/fondo.webp'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+    background-color: var(--bg-main);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+}
+
+/* Barra Superior Estilizada */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: rgba(255, 255, 255, 0.9); /* Blanco semi-transparente para que se vea el fondo */
+    backdrop-filter: blur(5px); /* Efecto de desenfoque moderno */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.welcome-text {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* El botón de Cerrar Sesión con tu estilo rosa pastel */
+.btn-logout-custom {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--pastel-pink);
+    border: none;
+    border-radius: 50px; /* Estilo pastilla */
+    padding: 8px 20px;
+    font-weight: bold;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.btn-logout-custom:hover {
+    background-color: var(--pastel-pink-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+/* Contenedores Principales */
+.app-container {
+    background: white;
+    border-radius: 24px;
+    border: 2px solid var(--border-color);
+}
+
+.custom-input {
+    border-radius: 12px;
+    border: 2px solid var(--border-color);
+    height: 50px;
+}
+
+/* Botón Traducir */
+.btn-primary-custom {
+    background-color: var(--pastel-pink);
+    border: none;
+    border-radius: 12px;
+    padding: 12px;
+    font-weight: bold;
+    color: var(--text-dark);
+    transition: 0.3s;
+}
+
+.btn-primary-custom:hover {
+    background-color: var(--pastel-pink-hover);
+}
+
+/* Área de Video */
+.video-output-area {
+    background: #F7FCFC;
+    border: 3px dashed var(--border-color);
+    border-radius: 16px;
+    min-height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Diccionario */
+.dictionary-wrapper {
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+/* Responsivo */
+@media (max-width: 576px) {
+    .top-bar {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+        padding: 10px;
+    }
+}

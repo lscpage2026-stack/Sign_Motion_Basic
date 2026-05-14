@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | SIGMOTION</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/login-style.css">
+    <style>
+        /* Estilo para que el error no aparezca de golpe al cargar */
+        .error-text {
+            display: none;
+            color: #dc3545;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-wrapper">
+        <div class="login-content">
+            
+            <div class="brand-section text-center">
+                <img src="assets/imagenes/Saludo_Inicio_Sesio.gif" alt="Panda Saludando" class="panda-logo-img">
+                <h1 class="brand-title mt-3">SIGMOTION</h1>
+                <p class="brand-slogan">Tu traductor de lengua de señas</p>
+            </div>
+
+            <div class="login-card text-center">
+                <h2 class="login-title">Inicia Sesión</h2>
+                <p class="login-subtitle mb-4">Encuentra nuevas ideas para aprender</p>
+
+                <form id="loginForm">
+                    <div class="mb-3">
+                        <input type="email" id="logEmail" class="form-control custom-input-login" placeholder="Correo electrónico" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" id="logPass" class="form-control custom-input-login" placeholder="Contraseña" required>
+                    </div>
+
+                    <p id="errorLogin" class="error-text">Correo o contraseña incorrectos.</p>
+
+                    <div class="text-end mb-3">
+                        <a href="#" class="forgot-link">Olvidé mi contraseña</a>
+                    </div>
+
+                    <button type="button" id="btnLogin" class="btn-login-main w-100 mb-3">Ingresar</button>
+
+                    <p class="footer-login mt-2">¿No tienes cuenta? <a href="registro.html">Regístrate</a></p>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/conexion.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>

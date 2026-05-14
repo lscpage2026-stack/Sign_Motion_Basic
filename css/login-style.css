@@ -1,0 +1,137 @@
+:root {
+    --bg-main: #D4F0F0;        /* Menta Pastel */
+    --primary-color: #FFC4C4;  /* Rosa Pastel */
+    --primary-hover: #FFB0B0;
+    --text-main: #333333;
+    --white: #FFFFFF;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-main);
+
+    background-image: url('../assets/imagenes/fondo.webp'); 
+    background-size: cover; /* Hace que la imagen cubra toda la pantalla sin deformarse */
+    background-position: center; /* Mantiene la imagen centrada */
+    background-repeat: no-repeat; /* Evita que la imagen se duplique como un mosaico */
+    background-attachment: fixed; /* Hace que el fondo se quede quieto si hay scroll */
+    
+    /* Color de respaldo por si la imagen tarda en cargar */
+    background-color: var(--bg-main);
+
+}
+
+/* Centrado total en pantalla */
+.login-wrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Nuevo contenedor que pone los elementos lado a lado */
+.login-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 80px; /* Separación grande entre el panda y la tarjeta */
+    max-width: 900px;
+    width: 100%;
+}
+
+/* Sección del logo a la izquierda */
+.brand-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.panda-logo-img {
+    width: 240px;
+    
+    /* 1. El truco para fusionar el fondo celeste del GIF con las nubes */
+    mix-blend-mode: multiply; 
+    
+    /* 2. Sombra que sigue la silueta del oso, no del cuadrado */
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15));
+    
+    /* 3. Limpiamos cualquier rastro de la tarjeta blanca anterior */
+    background-color: transparent; 
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none; 
+}
+
+.brand-title {
+    font-size: 36px;
+    font-weight: 800;
+    color: #4A4A59;
+    letter-spacing: -1px;
+    margin-bottom: 0;
+}
+
+.brand-slogan {
+    color: #718096;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* --- DISEÑO RESPONSIVO (Para celulares) --- */
+@media (max-width: 768px) {
+    .login-content {
+        flex-direction: column; /* Vuelve a apilarlos si la pantalla es pequeña */
+        gap: 30px;
+    }
+    
+    .panda-logo-img {
+        width: 150px; /* Lo hace más pequeño en celular */
+    }
+}
+
+.panda-logo-img {
+    width: 140px; 
+    mix-blend-mode: multiply; /* Quita el fondo blanco del JPG */
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.1));
+}
+
+.brand-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #4A4A59;
+}
+
+.login-card {
+    background-color: var(--white);
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.06);
+}
+
+.custom-input-login {
+    border: 2px solid #efefef;
+    border-radius: 16px;
+    padding: 12px;
+}
+
+.btn-login-main {
+    background-color: var(--primary-color);
+    color: #5C4B51;
+    border: none;
+    border-radius: 25px;
+    padding: 12px;
+    font-weight: 700;
+}
+
+.btn-login-main:hover { background-color: var(--primary-hover); }
+
+.error-text {
+    color: #FC8181;
+    font-size: 14px;
+    font-weight: bold;
+    display: none;
+}
