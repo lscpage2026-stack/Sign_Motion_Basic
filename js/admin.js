@@ -71,12 +71,13 @@ document.addEventListener('DOMContentLoaded', () => {
             adminForm.reset();
             fileInfo.classList.add('d-none');
             dropZone.querySelector('.drop-zone__prompt').innerText = "Arrastra el video aquí o haz clic para subir";
+            cargarListadoSenas();
         } catch (err) {
             mostrarEstado("Error: " + err.message, "alert-danger");
         }
     });
 
-    // --- GESTIÓN DE USUARIOS (NUEVO) ---
+    // --- GESTIÓN DE USUARIOS ---
     window.cargarUsuarios = async () => {
         tablaUsuariosBody.innerHTML = '<tr><td colspan="4" class="text-center">Cargando...</td></tr>';
         
@@ -93,18 +94,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 const tr = document.createElement('tr');
                 const badgeClass = user.rol === 'admin' ? 'badge-admin' : 'badge-alumno';
                 
-               // Dentro de cargarUsuarios, cuando creas el HTML de la fila:
-tr.innerHTML = `
-    <td>${user.nombre_completo}</td>
-    <td>${user.correo}</td>
-    <td><span class="${badgeClass}">${user.rol || 'alumno'}</span></td>
-    <td class="text-end">
-        <button class="btn btn-sm btn-outline-primary me-1" onclick="cambiarRol('${user.correo}', '${user.rol}')">
-            ${user.rol === 'admin' ? 'Hacer Alumno' : 'Hacer Admin'}
-        </button>
-        <button class="btn btn-sm btn-outline-danger" onclick="eliminarUsuario('${user.correo}')">🗑️</button>
-    </td>
-`;
+                tr.innerHTML = `
+                    <td>${user.nombre_completo}</td>
+                    <td>${user.correo}</td>
+                    <td><span class="${badgeClass}">${user.rol || 'alumno'}</span></td>
+                    <td class="text-end">
+                        <button class="btn btn-sm btn-outline-primary me-1" onclick="cambiarRol('${user.correo}', '${user.rol}')">
+                            ${user.rol === 'admin' ? 'Hacer Alumno' : 'Hacer Admin'}
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger" onclick="eliminarUsuario('${user.correo}')">🗑️</button>
+                    </td>
+                `;
                 tablaUsuariosBody.appendChild(tr);
             });
         } catch (err) {
@@ -112,44 +112,36 @@ tr.innerHTML = `
         }
     };
 
-   window.cambiarRol = async (correoUsuario, rolActual) => {
-    const nuevoRol = rolActual === 'admin' ? 'alumno' : 'admin';
-    
-    if (!confirm(`¿Cambiar rol de ${correoUsuario} a ${nuevoRol}?`)) return;
+    window.cambiarRol = async (correoUsuario, rolActual) => {
+        const nuevoRol = rolActual === 'admin' ? 'alumno' : 'admin';
+        
+        if (!confirm(`¿Cambiar rol de ${correoUsuario} a ${nuevoRol}?`)) return;
 
-    try {
-        const { data, error } = await _supabase
-            .from('usuarios')
-            .update({ rol: nuevoRol })
-            .eq('correo', correoUsuario) // <--- Cambiamos 'id' por 'correo'
-            .select();
+        try {
+            const { data, error } = await _supabase
+                .from('usuarios')
+                .update({ rol: nuevoRol })
+                .eq('correo', correoUsuario)
+                .select();
 
-        if (error) {
-            alert("Error de Supabase: " + error.message);
-            return;
+            if (error) {
+                alert("Error de Supabase: " + error.message);
+                return;
+            }
+
+            alert(`✅ Rol de ${correoUsuario} actualizado`);
+            cargarUsuarios();
+        } catch (err) {
+            console.error(err);
         }
+    };
 
-        alert(`✅ Rol de ${correoUsuario} actualizado`);
-        cargarUsuarios(); // Recargar la lista
-
-    } catch (err) {
-        console.error(err);
-    }
-};
-
-// Haz lo mismo para eliminarUsuario si lo tienes:
-window.eliminarUsuario = async (correoUsuario) => {
-    if (!confirm(`¿Eliminar a ${correoUsuario}?`)) return;
-    const { error } = await _supabase
-        .from('usuarios')
-        .delete()
-        .eq('correo', correoUsuario); // <--- Buscamos por correo
-    if (!error) cargarUsuarios();
-};
-
-    window.eliminarUsuario = async (id) => {
-        if (!confirm("¿Eliminar usuario definitivamente?")) return;
-        const { error } = await _supabase.from('usuarios').delete().eq('id', id);
+    window.eliminarUsuario = async (correoUsuario) => {
+        if (!confirm(`¿Eliminar a ${correoUsuario}?`)) return;
+        const { error } = await _supabase
+            .from('usuarios')
+            .delete()
+            .eq('correo', correoUsuario);
         if (!error) cargarUsuarios();
     };
 
@@ -159,6 +151,7 @@ window.eliminarUsuario = async (correoUsuario) => {
         status.classList.remove('d-none');
     }
 });
+
 // --- GESTIÓN DE SEÑAS ---
 async function cargarListadoSenas() {
     const tabla = document.getElementById('tablaSenasBody');
@@ -183,12 +176,8 @@ async function cargarListadoSenas() {
 window.eliminarSena = async (id, urlVideo) => {
     if (!confirm("¿Eliminar esta seña?")) return;
     
-    // 1. Opcional: Podrías borrar el archivo del Storage aquí también
-    // 2. Borrar de la tabla
     const { error } = await _supabase.from('senas').delete().eq('id', id);
     if (!error) cargarListadoSenas();
 };
 
-// Llama a la función al cargar la página
 document.addEventListener('DOMContentLoaded', cargarListadoSenas);
-// Y llámala también después de un insert exitoso en tu form de admin
