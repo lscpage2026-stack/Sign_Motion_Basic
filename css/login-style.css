@@ -27,8 +27,7 @@ body, html {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 80px;
-    max-width: 900px;
+    max-width: 400px;
     width: 100%;
 }
 
@@ -37,51 +36,43 @@ body, html {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.panda-logo-img {
-    width: 240px;
-    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.3));
-    background: transparent;
+    text-align: center;
+    width: 100%;
 }
 
 .brand-title {
-    font-size: 36px;
+    font-size: 42px;
     font-weight: 800;
-    color: #f8f9fa;
+    color: #ffffff;
     letter-spacing: -1px;
-    margin-bottom: 0;
+    margin-bottom: 8px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .brand-slogan {
-    color: #adb5bd;
-    font-size: 16px;
+    color: #e9ecef;
+    font-size: 18px;
     font-weight: 600;
+    margin-bottom: 30px;
 }
 
 /* Responsivo para celulares */
 @media (max-width: 768px) {
-    .login-content {
-        flex-direction: column;
-        gap: 30px;
-    }
-    
-    .panda-logo-img {
-        width: 150px;
-    }
-    
     .brand-title {
-        font-size: 28px;
+        font-size: 32px;
+    }
+    
+    .brand-slogan {
+        font-size: 16px;
     }
 }
 
 .login-card {
     background-color: #2d2d2d;
     width: 100%;
-    max-width: 400px;
     padding: 40px;
     border-radius: 24px;
-    box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.3);
     border: 1px solid #444444;
 }
 
@@ -91,10 +82,11 @@ body, html {
     padding: 12px;
     background: #1a1a1a;
     color: #f8f9fa;
+    font-weight: 500;
 }
 
 .custom-input-login::placeholder {
-    color: #888888;
+    color: #adb5bd;
 }
 
 .custom-input-login:focus {
@@ -106,7 +98,7 @@ body, html {
 
 .btn-login-main {
     background-color: var(--primary-color);
-    color: #5C4B51;
+    color: #1a1a1a;
     border: none;
     border-radius: 25px;
     padding: 12px;
@@ -120,4 +112,25 @@ body, html {
     font-size: 14px;
     font-weight: bold;
     display: none;
+}
+
+/* Enlaces */
+.forgot-link {
+    color: #FFC4C4;
+    text-decoration: none;
+}
+
+.forgot-link:hover {
+    color: #FFB0B0;
+    text-decoration: underline;
+}
+
+.footer-login a {
+    color: #FFC4C4;
+    text-decoration: none;
+}
+
+.footer-login a:hover {
+    color: #FFB0B0;
+    text-decoration: underline;
 }
