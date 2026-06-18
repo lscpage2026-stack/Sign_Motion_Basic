@@ -1,12 +1,29 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. CONFIGURACIÓN DE SEGURIDAD
-    const CORREO_ADMIN_AUTORIZADO = 'lscpage2026@gmail.com'; 
+document.addEventListener('DOMContentLoaded', async () => {
     const correoLogueado = localStorage.getItem('usuarioEmail');
+    
+    if (!correoLogueado) {
+        alert("Acceso denegado: Debes iniciar sesión.");
+        window.location.href = 'index.html';
+        return;
+    }
 
-    if (!correoLogueado || correoLogueado.toLowerCase() !== CORREO_ADMIN_AUTORIZADO.toLowerCase()) {
-        alert("Acceso denegado: No tienes permisos de administrador.");
+    // Verificar rol desde la base de datos
+    try {
+        const { data: usuario, error } = await _supabase
+            .from('usuarios')
+            .select('rol')
+            .eq('correo', correoLogueado)
+            .single();
+        
+        if (error || !usuario || usuario.rol !== 'admin') {
+            alert("Acceso denegado: No tienes permisos de administrador.");
+            window.location.href = 'app.html';
+            return;
+        }
+    } catch (err) {
+        console.error("Error verificando rol:", err);
         window.location.href = 'app.html';
-        return; 
+        return;
     }
 
     // 2. ELEMENTOS DE LA INTERFAZ
@@ -150,9 +167,11 @@ document.addEventListener('DOMContentLoaded', () => {
         status.className = `alert ${clase} mt-3`;
         status.classList.remove('d-none');
     }
+
+    // --- GESTIÓN DE SEÑAS ---
+    cargarListadoSenas();
 });
 
-// --- GESTIÓN DE SEÑAS ---
 async function cargarListadoSenas() {
     const tabla = document.getElementById('tablaSenasBody');
     const { data: senas, error } = await _supabase.from('senas').select('*').order('palabra', { ascending: true });
@@ -179,5 +198,3 @@ window.eliminarSena = async (id, urlVideo) => {
     const { error } = await _supabase.from('senas').delete().eq('id', id);
     if (!error) cargarListadoSenas();
 };
-
-document.addEventListener('DOMContentLoaded', cargarListadoSenas);
