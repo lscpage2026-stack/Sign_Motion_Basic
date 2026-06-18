@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 1. Validación básica de campos vacíos
         if (!email || !pass) {
             errorLogin.textContent = "Por favor, completa todos los campos.";
-            errorLogin.style.display = 'block';
+            errorLogin.classList.remove('d-none');
             return;
         }
 
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (error) {
                 console.error("Error de Supabase:", error.message);
                 errorLogin.textContent = "Error de conexión con la base de datos.";
-                errorLogin.style.display = 'block';
+                errorLogin.classList.remove('d-none');
                 return;
             }
 
@@ -43,13 +43,13 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 // Credenciales incorrectas
                 errorLogin.textContent = "Correo o contraseña incorrectos.";
-                errorLogin.style.display = 'block';
+                errorLogin.classList.remove('d-none');
             }
 
         } catch (err) {
             console.error("Error inesperado:", err);
             errorLogin.textContent = "Hubo un problema al intentar iniciar sesión.";
-            errorLogin.style.display = 'block';
+            errorLogin.classList.remove('d-none');
         }
     }
 

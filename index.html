@@ -38,7 +38,7 @@
                         <input type="password" id="logPass" class="form-control custom-input-login" placeholder="Contraseña" required>
                     </div>
 
-                    <p id="errorLogin" class="error-text">Correo o contraseña incorrectos.</p>
+                    <p id="errorLogin" class="error-text d-none">Correo o contraseña incorrectos.</p>
 
                     <div class="text-end mb-3">
                         <a href="#" class="forgot-link">Olvidé mi contraseña</a>
@@ -54,8 +54,14 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="js/config.js"></script>
+    <script src="/api/config"></script>
     <script src="js/conexion.js"></script>
     <script src="js/login.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const errorElement = document.getElementById('errorLogin');
+            if (errorElement) errorElement.style.display = 'none';
+        });
+    </script>
 </body>
 </html>

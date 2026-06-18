@@ -1,0 +1,11 @@
+{
+  "name": "sign-motion-basic",
+  "version": "1.0.0",
+  "description": "Traductor de lengua de señas",
+  "scripts": {
+    "dev": "node inject-env.js && npx serve .",
+    "build": "node inject-env.js",
+    "start": "npx serve ."
+  },
+  "private": true
+}

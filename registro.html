@@ -15,6 +15,9 @@
             font-size: 0.9rem;
             margin-bottom: 15px;
         }
+        .d-none {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
@@ -23,7 +26,7 @@
         <div class="login-content">
             
             <div class="brand-section text-center">
-                <img src="assets/imagenes/Saludo_Inicio_Sesio.gif" alt="Panda Saludando" class="panda-logo-img">
+                <img src="assets/imagenes/panda.png" alt="Panda Saludando" class="panda-logo-img">
                 <h1 class="brand-title mt-3">SIGMOTION</h1>
                 <p class="brand-slogan">Comienza tu aprendizaje hoy</p>
             </div>
@@ -46,7 +49,7 @@
                         <input type="password" id="regPassConfirm" class="form-control custom-input-login" placeholder="Confirma tu contraseña" required>
                     </div>
 
-                    <p id="errorRegistro" class="error-text"></p>
+                    <p id="errorRegistro" class="error-text d-none"></p>
 
                     <button type="button" id="btnRegistrar" class="btn-login-main w-100 mb-3">Crear Cuenta</button>
 
@@ -58,7 +61,7 @@
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>   
-    <script src="js/config.js"></script>   
+    <script src="/api/config"></script>   
     <script src="js/conexion.js"></script> 
     <script src="js/registro.js"></script>
 

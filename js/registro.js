@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Ocultar error previo y cambiar estado del botón
-        errorRegistro.style.display = 'none';
+        errorRegistro.classList.add('d-none');
         btnRegistrar.disabled = true;
         btnRegistrar.innerText = "Creando cuenta...";
 
@@ -100,4 +100,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const errorRegistro = document.getElementById('errorRegistro');
+    if (errorRegistro) errorRegistro.style.display = 'none';
 });

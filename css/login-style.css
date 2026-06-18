@@ -60,6 +60,11 @@ body, html {
     line-height: 1.4;
 }
 
+.panda-logo-img {
+    max-width: 120px;
+    height: auto;
+}
+
 /* Tarjeta de Login estilizada y con proporciones correctas */
 .login-card {
     flex: 1;
