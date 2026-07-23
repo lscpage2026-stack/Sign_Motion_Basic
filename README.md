@@ -63,11 +63,8 @@ SIGMOTION_Basic/
 │   ├── app.js                  # Lógica del traductor (búsqueda de señas)
 │   └── admin.js                # Lógica del panel de administración
 ├── assets/
-│   ├── imagenes/               # Imágenes y GIFs
-│   │   ├── panda.png
-│   │   ├── fondo.webp
-│   │   ├── Saludo_Inicio_Sesio.gif
-│   │   └── Saludo_Inicio_Sesion.mp4
+│   ├── imagenes/               # Imágenes
+│   │   └── panda.png
 │   ├── videos/                 # Videos de señas del diccionario
 │   │   ├── hola.mp4
 │   │   ├── gracias.mp4
@@ -104,15 +101,36 @@ SIGMOTION_Basic/
 3. **Configurar las credenciales:**
    - Editar el archivo `js/config.js` con las credenciales de tu proyecto de Supabase:
    ```javascript
-   const CONFIG = {
-       SUPABASE_URL: 'https://tu-proyecto.supabase.co",
-       SUPABASE_KEY: "sb_publishable_TuClaveAqui"
-   };
+const CONFIG = {
+    SUPABASE_URL: 'https://tu-proyecto.supabase.co',
+    SUPABASE_KEY: 'sb_publishable_TuClaveAqui'
+};
    ```
    - **Importante:** Este archivo está en `.gitignore` para no exponer las credenciales.
 
 4. **Abrir la aplicación:**
-   - Simplemente abrir el archivo `index.html` en un navegador web, o usar un servidor local.
+    - Simplemente abrir el archivo `index.html` en un navegador web, o usar un servidor local.
+
+---
+
+## Deploy en Vercel
+
+### Configuración de Variables de Entorno
+
+1. En el dashboard de Vercel, ve a **Settings > Environment Variables**
+2. Agrega estas variables:
+
+| Nombre | Valor | Tipo |
+|--------|-------|------|
+| `SUPABASE_URL` | URL de tu proyecto (ej: `https://abc123.supabase.co`) | Plaintext |
+| `SUPABASE_KEY` | Clave pública (publishable key) de Supabase | Plaintext |
+
+### Pasos de Deploy
+
+1. Conecta tu repositorio GitHub a Vercel
+2. Configura las variables de entorno
+3. Vercel ejecutará `node inject-env.js` durante el build
+4. El `js/config.js` se generará automáticamente con las credenciales
 
 ---
 

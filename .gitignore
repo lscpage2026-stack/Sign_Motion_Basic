@@ -1,2 +1,3 @@
-# Ignorar el archivo de llaves reales
-js/config.js
+# Ignorar credenciales reales en desarrollo local
+# En Vercel, el config.js se despliega con credenciales de entorno
+# js/config.js
