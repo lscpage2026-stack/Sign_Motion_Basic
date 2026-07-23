@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGMOTION | Camino de Aprendizaje</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/lecciones-style.css">
+</head>
+<body>
+
+    <div class="navegacion-superior">
+        <button class="navegacion-superior__volver" onclick="window.location.href='app.html'">
+            ← Volver
+        </button>
+    </div>
+
+    <div class="lecciones-container">
+        <div class="ruta-intro">
+            <img src="assets/imagenes/panda.png" alt="Guía" class="ruta-mascota">
+            <h1>Camino de Aprendizaje</h1>
+            <p>Aprende lengua de señas paso a paso. Completa cada lección para desbloquear la siguiente.</p>
+        </div>
+
+        <div id="ruta-container"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/conexion.js"></script>
+    <script src="js/lecciones.js"></script>
+</body>
+</html>

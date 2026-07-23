@@ -1,0 +1,576 @@
+:root {
+    --duo-green: #58cc02;
+    --duo-green-dark: #49a301;
+    --duo-blue: #1cb0f6;
+    --duo-blue-dark: #1899d6;
+    --duo-red: #ff4b4b;
+    --duo-red-dark: #d43c3c;
+    --duo-yellow: #ffc800;
+    --duo-yellow-dark: #d9a600;
+    --duo-gray: #e5e5e5;
+    --duo-gray-dark: #afafaf;
+    --duo-text: #3c3c3c;
+    --duo-text-light: #777;
+    --duo-bg: #ffffff;
+    --duo-card: #f7f7f7;
+    --duo-border: #e5e5e5;
+    --radius: 16px;
+    --radius-sm: 12px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--duo-bg);
+    color: var(--duo-text);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* Fondo con patrón sutil */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(88, 204, 2, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(28, 176, 246, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Header */
+.lecciones-header {
+    background: var(--duo-green);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.lecciones-header__back {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.lecciones-header__back:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.lecciones-header__title {
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Contenedor principal */
+.lecciones-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 16px 40px;
+}
+
+/* Introducción de ruta */
+.ruta-intro {
+    text-align: center;
+    margin-bottom: 32px;
+    padding: 24px;
+    background: linear-gradient(135deg, #e8f5e9 0%, #e3f2fd 100%);
+    border-radius: var(--radius);
+    border: 2px solid var(--duo-border);
+}
+
+.ruta-intro h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--duo-text);
+    margin-bottom: 8px;
+}
+
+.ruta-intro p {
+    color: var(--duo-text-light);
+    font-size: 16px;
+    margin: 0;
+}
+
+.ruta-mascota {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 12px;
+    border: 3px solid var(--duo-green);
+}
+
+/* Etapas */
+.etapa {
+    background: var(--duo-card);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 24px;
+    border: 2px solid var(--duo-border);
+    position: relative;
+    overflow: hidden;
+}
+
+.etapa--bloqueada {
+    opacity: 0.6;
+    filter: grayscale(0.5);
+}
+
+.etapa__header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.etapa__icono {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 800;
+    color: white;
+    flex-shrink: 0;
+}
+
+.etapa--verde .etapa__icono { background: var(--duo-green); }
+.etapa--azul .etapa__icono { background: var(--duo-blue); }
+.etapa--naranja .etapa__icono { background: var(--duo-yellow); }
+
+.etapa__info h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+}
+
+.etapa__info p {
+    margin: 0;
+    color: var(--duo-text-light);
+    font-size: 14px;
+}
+
+.etapa__progreso {
+    margin-left: auto;
+    text-align: right;
+    font-weight: 700;
+    color: var(--duo-green);
+    font-size: 14px;
+}
+
+/* Unidades */
+.unidades {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    gap: 16px;
+    padding: 8px 0;
+}
+
+.unidad {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.unidad__circulo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    border: 2px solid var(--duo-border);
+    transition: all 0.2s ease;
+    position: relative;
+    background: white;
+    color: var(--duo-text);
+}
+
+.unidad:hover .unidad__circulo {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.unidad--disponible .unidad__circulo {
+    border-color: var(--duo-blue);
+    color: var(--duo-blue);
+    background: #e1f5fe;
+}
+
+.unidad--completada .unidad__circulo {
+    background: var(--duo-green);
+    border-color: var(--duo-green);
+    color: white;
+}
+
+.unidad--bloqueada .unidad__circulo {
+    background: var(--duo-gray);
+    border-color: var(--duo-gray);
+    color: var(--duo-text-light);
+    cursor: not-allowed;
+}
+
+.unidad__label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--duo-text);
+    text-align: center;
+    line-height: 1.2;
+    max-width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.unidad--bloqueada .unidad__label {
+    color: var(--duo-text-light);
+}
+
+/* Candado */
+.unidad--bloqueada .unidad__circulo::after {
+    content: '🔒';
+    font-size: 20px;
+    position: absolute;
+}
+
+/* Check */
+.unidad--completada .unidad__circulo::after {
+    content: '✓';
+    font-size: 28px;
+    font-weight: 800;
+}
+
+/* Lección */
+.leccion-header {
+    background: var(--duo-green);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.leccion-header__cerrar {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background 0.2s;
+    font-weight: 700;
+}
+
+.leccion-header__cerrar:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.leccion-header__title {
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.leccion-progreso-bar {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 16px 16px 0;
+}
+
+.leccion-progreso-bar__inner {
+    height: 12px;
+    background: var(--duo-gray);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.leccion-progreso-bar__fill {
+    height: 100%;
+    background: var(--duo-green);
+    width: 0%;
+    transition: width 0.4s ease;
+    border-radius: 6px;
+}
+
+/* Área de lección */
+.leccion-contenido {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 24px 16px;
+}
+
+.leccion-fase {
+    display: none;
+}
+
+.leccion-fase--activa {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Fase Aprende */
+.fase-aprende__card {
+    background: white;
+    border-radius: var(--radius);
+    border: 2px solid var(--duo-border);
+    padding: 24px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.fase-aprende__video {
+    width: 100%;
+    max-width: 400px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 20px;
+    background: #000;
+}
+
+.fase-aprende__palabra {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--duo-text);
+    margin-bottom: 8px;
+    text-transform: capitalize;
+}
+
+.fase-aprende__indicacion {
+    color: var(--duo-text-light);
+    font-size: 16px;
+    margin-bottom: 24px;
+}
+
+/* Fase Practica */
+.fase-practica__video {
+    width: 100%;
+    max-width: 400px;
+    border-radius: var(--radius-sm);
+    margin: 0 auto 24px;
+    display: block;
+    background: #000;
+}
+
+.fase-practica__pregunta {
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 24px;
+    color: var(--duo-text);
+}
+
+.fase-practica__opciones {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.opcion-btn {
+    width: 100%;
+    padding: 18px 24px;
+    font-size: 18px;
+    font-weight: 600;
+    border: 2px solid var(--duo-border);
+    border-radius: var(--radius-sm);
+    background: white;
+    color: var(--duo-text);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.opcion-btn:hover:not(:disabled) {
+    border-color: var(--duo-text-light);
+    background: var(--duo-card);
+}
+
+.opcion-btn--correcto {
+    background: #d7ffb8 !important;
+    border-color: var(--duo-green) !important;
+    color: #2e7d32 !important;
+}
+
+.opcion-btn--incorrecto {
+    background: #ffb8b8 !important;
+    border-color: var(--duo-red) !important;
+    color: var(--duo-red-dark) !important;
+}
+
+.opcion-btn:disabled {
+    cursor: default;
+}
+
+.opcion-btn__icono {
+    font-size: 22px;
+    width: 28px;
+    text-align: center;
+}
+
+/* Botón principal */
+.btn-primario {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 24px auto 0;
+    padding: 18px;
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: var(--duo-green);
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 0 var(--duo-green-dark), 0 6px 12px rgba(88,204,2,0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-primario:hover:not(:disabled) {
+    background: #61e002;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 var(--duo-green-dark), 0 8px 16px rgba(88,204,2,0.4);
+}
+
+.btn-primario:active:not(:disabled) {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 var(--duo-green-dark), 0 3px 6px rgba(88,204,2,0.3);
+}
+
+.btn-primario:disabled {
+    background: var(--duo-gray-dark);
+    box-shadow: 0 4px 0 #999, 0 6px 12px rgba(0,0,0,0.1);
+    cursor: default;
+}
+
+/* Fase Completado */
+.fase-completado__card {
+    background: white;
+    border-radius: var(--radius);
+    border: 2px solid var(--duo-border);
+    padding: 40px 24px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.fase-completado__icono {
+    font-size: 64px;
+    margin-bottom: 16px;
+}
+
+.fase-completado__titulo {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--duo-green);
+    margin-bottom: 8px;
+}
+
+.fase-completado__texto {
+    color: var(--duo-text-light);
+    font-size: 16px;
+    margin-bottom: 24px;
+}
+
+/* Barra superior de navegación en ruta */
+.navegacion-superior {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 16px 16px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navegacion-superior__volver {
+    background: none;
+    border: 2px solid var(--duo-border);
+    border-radius: var(--radius-sm);
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--duo-text);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.navegacion-superior__volver:hover {
+    border-color: var(--duo-text-light);
+    background: var(--duo-card);
+}
+
+/* Responsivo */
+@media (max-width: 576px) {
+    .unidades {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+    }
+
+    .unidad__circulo {
+        width: 56px;
+        height: 56px;
+        font-size: 12px;
+    }
+
+    .etapa {
+        padding: 16px;
+    }
+
+    .ruta-intro {
+        padding: 16px;
+    }
+
+    .ruta-intro h1 {
+        font-size: 22px;
+    }
+
+    .leccion-container {
+        padding: 16px;
+    }
+}

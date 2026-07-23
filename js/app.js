@@ -92,11 +92,19 @@ document.addEventListener('DOMContentLoaded', () => {
          });
      }
 
-     // 7. Cerrar sesión
-     if (btnLogout) {
-         btnLogout.addEventListener('click', () => {
-             localStorage.clear();
-             window.location.href = 'index.html';
-         });
-     }
+      // 7. Cerrar sesión
+      if (btnLogout) {
+          btnLogout.addEventListener('click', () => {
+              localStorage.clear();
+              window.location.href = 'index.html';
+          });
+      }
+
+      // 8. Ir a ruta de aprendizaje
+      const btnRuta = document.getElementById('btnRuta');
+      if (btnRuta) {
+          btnRuta.addEventListener('click', () => {
+              window.location.href = 'ruta.html';
+          });
+      }
 });
