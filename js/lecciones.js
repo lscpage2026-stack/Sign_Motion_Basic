@@ -332,7 +332,7 @@ async function renderLeccion() {
         container.innerHTML = `
             <div class="leccion-fase leccion-fase--activa">
                 <div class="fase-aprende__card">
-                    <video class="fase-aprende__video" controls>
+                    <video class="fase-aprende__video" controls muted>
                         <source src="${unidad.video}" type="video/mp4">
                         Tu navegador no soporta videos.
                     </video>
@@ -361,7 +361,7 @@ async function renderLeccion() {
 
         container.innerHTML = `
             <div class="leccion-fase leccion-fase--activa">
-                <video class="fase-practica__video" controls id="video-practica">
+                <video class="fase-practica__video" controls muted id="video-practica">
                     <source src="${unidad.video}" type="video/mp4">
                 </video>
                 <div class="fase-practica__pregunta">¿Qué significa esta seña?</div>
