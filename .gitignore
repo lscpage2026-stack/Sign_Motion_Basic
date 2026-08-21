@@ -1,3 +1,4 @@
 # Ignorar credenciales reales en desarrollo local
 # En Vercel, el config.js se despliega con credenciales de entorno
-# js/config.js
+js/config.js
+.env
